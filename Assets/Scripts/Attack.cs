@@ -5,7 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     int Damage;
-    Entity Target;
+    Entity[] Targets;
     Type Type;
     Status[] Status;
     [Range(0,1)]
@@ -14,4 +14,15 @@ public class Attack : MonoBehaviour
     float[] StatusWeights;
     int StatusLimit;
     float Accuracy;
+
+    void Perform()
+    {
+        foreach (Entity Target in Targets)
+        {
+            // Check if it hits
+            // Temp damage calcuation
+            Target.GetStat("HP").Value -= Damage;
+            // Status chance
+        }
+    }
 }

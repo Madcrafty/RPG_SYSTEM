@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stat : MonoBehaviour
 {
 	string Name;
-	int Value;
+	public int Value;
 	//int EffectiveValue { get
 	//	{
 	//		int temp = Value;
