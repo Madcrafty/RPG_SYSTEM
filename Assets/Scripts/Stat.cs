@@ -1,38 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Stat : MonoBehaviour
+[System.Serializable]
+public class Stat
 {
-	string Name;
-	public int Value;
-	//int EffectiveValue { get
-	//	{
-	//		int temp = Value;
-	//		foreach (Stat item in Modifiers)
-	//		{
-	//			temp += item.EffectiveValue;
-	//		}
-	//		return temp;
-	//	} 
-	//}
-	Stat[] Modifiers;
-	int CalaculateEffectiveValue()
-	{
-		int temp = Value;
-		foreach (Stat item in Modifiers)
+	public string Name = "";
+	public int Value = 0;
+	int[] Modifiers;
+	public int EffectiveValue { get
 		{
-			temp += item.CalaculateEffectiveValue();
+			int temp = Value;
+			if (Modifiers != null)
+			{
+				foreach (int item in Modifiers)
+				{
+					temp += item;
+				}
+			}
+			return temp;
 		}
-		return temp;
 	}
-	//struct PrimaryStat
-	//{
-	//	string Name;
-	//	int Value;
-	//}
-	//struct SecondaryStat
-	//{
-
-	//}
 }

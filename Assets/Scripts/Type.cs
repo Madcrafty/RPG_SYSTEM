@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Type : MonoBehaviour
 {
-    string Name;
-    Type[] TypeAdvantage;
-    Type[] TypeDisadvantage;
-    void AdvantageEffect()
+    // Start is called before the first frame update
+    void Start()
     {
-
+        
     }
-    void DisadvantageEffect()
-    {
 
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
