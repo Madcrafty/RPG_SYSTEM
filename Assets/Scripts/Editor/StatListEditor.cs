@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Stats))]
-public class StatsEditor : Editor
+[CustomEditor(typeof(StatList))]
+public class StatListEditor : Editor
 {
     int PrimaryStatsLength;
     Stat[] PrimaryStats;
@@ -13,7 +13,7 @@ public class StatsEditor : Editor
     public override void OnInspectorGUI()
     {
         // Initialise Menus
-        Stats myTarget = (Stats)target;
+        StatList myTarget = (StatList)target;
         PrimaryStatsLength = myTarget.PrimaryStatsLength;
         PrimaryStats = myTarget.PrimaryStats;
         SecondaryStatsLength = myTarget.PrimaryStatsLength;
@@ -38,7 +38,8 @@ public class StatsEditor : Editor
         }
         foreach (Stat stat in myTarget.PrimaryStats)
         {
-            //stat   
+            stat.Name = EditorGUILayout.TextField("Name", stat.Name);
+            stat.Value = Mathf.Clamp(EditorGUILayout.IntField("Value", PrimaryStatsLength), 0, 999);
         }
     }
 

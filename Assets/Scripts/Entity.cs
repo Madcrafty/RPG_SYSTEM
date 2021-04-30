@@ -8,7 +8,7 @@ public class Entity : MonoBehaviour
     Stat[] SecondaryStats;
     Type[] Types;
     Attack[] Attacks;
-    Stats statblock;
+    StatList statblock;
     //void GetGlobalStatList()
     //{
     //    if (PrimaryStats.Length != statblock.PrimaryStats.Length)

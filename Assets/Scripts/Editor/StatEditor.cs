@@ -2,6 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
+
+// IngredientDrawerUIE
+[CustomPropertyDrawer(typeof(Stat))]
+public class StatDrawerUIE : PropertyDrawer
+{
+    public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    {
+        // Create property container element.
+        var container = new VisualElement();
+
+        // Create property fields.
+        var nameField = new PropertyField(property.FindPropertyRelative("Name"), "Fancy Name");
+        var valueField = new PropertyField(property.FindPropertyRelative("Value"));
+
+        // Add fields to the container.
+        container.Add(nameField);
+        container.Add(valueField);
+        
+        return container;
+    }
+}
 
 //[CustomEditor(typeof(Stat))]
 //public class StatEditor : Editor
@@ -43,11 +66,11 @@ public class StatDrawer : PropertyDrawer
 
         // Calculate rects
         var nameRect = new Rect(position.x, position.y, 30, position.height);
-        var unitRect = new Rect(position.x + 35, position.y, 50, position.height);
+        var valueRect = new Rect(position.x + 35, position.y, 50, position.height);
 
         // Draw fields - passs GUIContent.none to each so they are drawn without labels
         EditorGUI.PropertyField(nameRect, property.FindPropertyRelative("Name"), GUIContent.none);
-        EditorGUI.PropertyField(unitRect, property.FindPropertyRelative("Value"), GUIContent.none);
+        EditorGUI.PropertyField(valueRect, property.FindPropertyRelative("Value"), GUIContent.none);
 
         // Set indent back to what it was
         EditorGUI.indentLevel = indent;

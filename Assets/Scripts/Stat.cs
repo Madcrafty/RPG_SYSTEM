@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public class Stat
+public class Stat : MonoBehaviour
 {
 	public string Name = "";
 	public int Value = 0;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stats : MonoBehaviour
+public class StatList : MonoBehaviour
 {
 	public int PrimaryStatsLength;
 	public Stat[] PrimaryStats;

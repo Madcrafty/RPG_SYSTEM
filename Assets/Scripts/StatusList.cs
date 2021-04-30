@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Type : MonoBehaviour
+public class StatusList : MonoBehaviour
 {
-    string Name;
-
+    Status[] Statuses;
 }

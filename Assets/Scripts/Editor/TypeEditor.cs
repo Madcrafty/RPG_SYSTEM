@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Type : MonoBehaviour
+public class TypeEditor : MonoBehaviour
 {
-    string Name;
 
 }
