@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Type : MonoBehaviour
+public class Type : ScriptableObject
 {
     string Name;
 
