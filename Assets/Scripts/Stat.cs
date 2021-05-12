@@ -1,20 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable]
+//[System.Serializable]
+[CreateAssetMenu(fileName = "Stat", menuName = "Stat")]
 public class Stat : ScriptableObject
 {
-	public string Name = "";
-	public int Value = 0;
-	int[] Modifiers;
+	//[SerializeField]
+	public string Name;
+	//[SerializeField]
+	public int Value;
+	//[SerializeField]
+	//public int[] Modifiers;
+	public Stat[] Modifiers;
 	public int EffectiveValue { get
 		{
 			int temp = Value;
 			if (Modifiers != null)
 			{
-				foreach (int item in Modifiers)
+				foreach (Stat item in Modifiers)
 				{
-					temp += item;
+					temp += item.EffectiveValue;
 				}
 			}
 			return temp;

@@ -10,5 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 153ce84f7e153b340a80906ee8d6989f, type: 3}
-  m_Name: GlobalSystems
+  m_Name: GlobalSystem
   m_EditorClassIdentifier: 
+  memes: 
+  StatList:
+  - {fileID: 11400000, guid: 681b20c62793fc24798bd6bab1ac800e, type: 2}
+  AttackList: []
+  StatusList: []
+  TypeList: []
