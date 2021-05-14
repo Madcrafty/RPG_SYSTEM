@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Type", menuName = "Type")]
+[CreateAssetMenu(fileName = "Type", menuName = "RPG/Type")]
 public class Type : ScriptableObject
 {
-    public string Name;
+    //public string Name;
     public Type[] EffectiveAgainst;
     public float[] EffectiveMod;
     public Type[] RisistantTo;
@@ -14,25 +14,24 @@ public class Type : ScriptableObject
     private List<Type> m_AltList = new List<Type>();
     private int m_listSize = 3;
     private int m_iterator = 0;
-
-    //private string m_name;
-    //private Type[] m_effectiveAgainst;
-    //private float[] m_effectiveMod;
-    //private Type[] m_risistantTo;
-    //private float[] m_risistMod;
     public void ApplyChanges()
     {
-        Type tmp = new Type();
-        tmp.Name = Name;
-        tmp.EffectiveAgainst = EffectiveAgainst;
-        tmp.EffectiveMod = EffectiveMod;
-        tmp.RisistantTo = RisistantTo;
-        tmp.RisistMod = RisistMod;
-        m_AltList.Add(tmp);
-        m_iterator = 0;
-        if (m_AltList.Count > m_listSize)
+        if (m_iterator != 0)
         {
-            m_AltList.RemoveAt(m_listSize);
+            //name = Name;
+            Type tmp = new Type();
+            //tmp.Name = Name;
+            //tmp.name = Name;
+            tmp.EffectiveAgainst = EffectiveAgainst;
+            tmp.EffectiveMod = EffectiveMod;
+            tmp.RisistantTo = RisistantTo;
+            tmp.RisistMod = RisistMod;
+            m_AltList.Insert(0, tmp);
+            m_iterator = 0;
+            if (m_AltList.Count > m_listSize)
+            {
+                m_AltList.RemoveAt(m_listSize);
+            }
         }
     }
     public void RevertChanges()
@@ -41,7 +40,21 @@ public class Type : ScriptableObject
         {
             m_iterator++;
         }
-        Name = m_AltList[m_iterator].Name;
+        //Name = m_AltList[m_iterator].Name;
+        //name = m_AltList[m_iterator].Name;
+        EffectiveAgainst = m_AltList[m_iterator].EffectiveAgainst;
+        EffectiveMod = m_AltList[m_iterator].EffectiveMod;
+        RisistantTo = m_AltList[m_iterator].RisistantTo;
+        RisistMod = m_AltList[m_iterator].RisistMod;
+    }  
+    public void RedoChanges()
+    {
+        if (m_iterator >= 0)
+        {
+            m_iterator--;
+        }
+        //Name = m_AltList[m_iterator].Name;
+        //name = m_AltList[m_iterator].Name; 
         EffectiveAgainst = m_AltList[m_iterator].EffectiveAgainst;
         EffectiveMod = m_AltList[m_iterator].EffectiveMod;
         RisistantTo = m_AltList[m_iterator].RisistantTo;
@@ -55,9 +68,23 @@ public class Type : ScriptableObject
     {
         return m_iterator;
     }
+    public void SetUndoListLength(int a_listLength)
+    {
+        m_listSize = a_listLength;
+    }
+    public int GetUndoListLength()
+    {
+        return m_listSize;
+    }
     private void OnValidate()
     {
         //Type type = (Type)target;
-        SetIterator(-1);
+        if (m_iterator > 0)
+        {
+            Type tmp = m_AltList[m_iterator];
+            m_AltList.Remove(tmp);
+            m_AltList.Insert(0, tmp);          
+        }
+        m_iterator = -1;
     }
 }

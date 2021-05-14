@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Algorithm", menuName = "Algorithm")]
+[CreateAssetMenu(fileName = "Algorithm", menuName = "RPG/Algorithm")]
 public class Algorithm : ScriptableObject
 {
     public int variables;

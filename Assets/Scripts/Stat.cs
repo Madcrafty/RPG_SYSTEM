@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 //[System.Serializable]
-[CreateAssetMenu(fileName = "Stat", menuName = "Stat")]
+[CreateAssetMenu(fileName = "Stat", menuName = "RPG/Stat")]
 public class Stat : ScriptableObject
 {
 	//[SerializeField]

@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "GlobalSystem", menuName = "GlobalSystem", order = 5)]
+[CreateAssetMenu(fileName = "GlobalSystem", menuName = "RPG/GlobalSystem", order = 5)]
 public class GlobalSystem : ScriptableObject
 {
     [SerializeField]
-    public int[] memes;
-    //[SerializeField]
     public Stat[] StatList;
     [SerializeField]
     Attack[] AttackList;
@@ -17,5 +15,9 @@ public class GlobalSystem : ScriptableObject
     [SerializeField]
     Type[] TypeList;
     private UnityEvent m_UpdateInheritanceEvent = new UnityEvent();
-    
+
+    private void OnValidate()
+    {
+        
+    }
 }

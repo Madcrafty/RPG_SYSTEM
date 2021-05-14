@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Status", menuName = "Status")]
+[CreateAssetMenu(fileName = "Status", menuName = "RPG/Status")]
 public class Status : ScriptableObject
 {
     string Name;
