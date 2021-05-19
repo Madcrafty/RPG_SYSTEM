@@ -38,7 +38,7 @@ public class StatListEditor : Editor
         }
         foreach (Stat stat in myTarget.PrimaryStats)
         {
-            stat.Name = EditorGUILayout.TextField("Name", stat.Name);
+            stat.name = EditorGUILayout.TextField("Name", stat.name);
             stat.Value = Mathf.Clamp(EditorGUILayout.IntField("Value", PrimaryStatsLength), 0, 999);
         }
     }

@@ -6,8 +6,6 @@ using UnityEngine;
 public class Stat : ScriptableObject
 {
 	//[SerializeField]
-	public string Name;
-	//[SerializeField]
 	public int Value;
 	//[SerializeField]
 	//public int[] Modifiers;
@@ -24,5 +22,17 @@ public class Stat : ScriptableObject
 			}
 			return temp;
 		}
+	}
+	public int CalcEffectiveValue (float value)
+    {
+		int temp = Value;
+		if (Modifiers != null)
+		{
+			foreach (Stat item in Modifiers)
+			{
+				temp += item.EffectiveValue;
+			}
+		}
+		return temp;
 	}
 }

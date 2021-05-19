@@ -14,6 +14,7 @@ public class Type : ScriptableObject
     private List<Type> m_AltList = new List<Type>();
     private int m_listSize = 3;
     private int m_iterator = 0;
+
     public void ApplyChanges()
     {
         if (m_iterator != 0)

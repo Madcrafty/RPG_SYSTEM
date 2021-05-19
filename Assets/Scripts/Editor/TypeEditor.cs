@@ -6,18 +6,18 @@ using UnityEditor;
 [CustomEditor(typeof(Type))]
 public class TypeEditor : Editor
 {
-    private void OnEnable()
-    {
-        EditorApplication.hierarchyChanged += ChangeName;
-    }
-    private void OnDisable()
-    {
-        EditorApplication.hierarchyChanged -= ChangeName;
-    }
-    void ChangeName()
-    {
-        //(Type)target.name
-    }
+    //private void OnEnable()
+    //{
+    //    EditorApplication.hierarchyChanged += ChangeName;
+    //}
+    //private void OnDisable()
+    //{
+    //    EditorApplication.hierarchyChanged -= ChangeName;
+    //}
+    //void ChangeName()
+    //{
+    //    //(Type)target.name
+    //}
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();

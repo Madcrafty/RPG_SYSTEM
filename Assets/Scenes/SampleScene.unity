@@ -244,7 +244,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753702fca59741a43942953d43da05ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalSystem: {fileID: 0}
+  globalSystem: {fileID: 11400000, guid: d936e32e05a386f478e012d1a3b2eef3, type: 2}
+  PrimaryStats:
+  - {fileID: 11400000, guid: b8da37cfff9154f4595b3fde549324dc, type: 2}
+  - {fileID: 11400000, guid: bdedf9f7d9c7b154b94735eceff89372, type: 2}
+  SecondaryStats:
+  - {fileID: 11400000, guid: 681b20c62793fc24798bd6bab1ac800e, type: 2}
+  PrimaryValues: []
+  SecondaryValues: []
 --- !u!4 &828483967
 Transform:
   m_ObjectHideFlags: 0

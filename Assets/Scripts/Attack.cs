@@ -22,7 +22,7 @@ public class Attack : ScriptableObject
         {
             // Check if it hits
             // Temp damage calcuation
-            Target.GetStat("HP").Value -= Damage;
+            Target.TakeDamage(Damage);
             // Status chance
         }
     }

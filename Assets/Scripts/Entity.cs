@@ -5,26 +5,58 @@ using UnityEngine.Events;
 
 public class Entity : MonoBehaviour
 {
-    Stat[] PrimaryStats;
-    Stat[] SecondaryStats;
-    Type[] Types;
-    Attack[] Attacks;
-    //StatList statblock;
     public GlobalSystem globalSystem;
+    //public Stat[] PrimaryStats;
+    //public Stat[] SecondaryStats;
+
+    public float[] PrimaryValues;
+    public float[] SecondaryValues;
+    //Type[] Types;
+    //Attack[] Attacks;
+    //StatList statblock;
+    
     private GlobalSystem oldSystem;
+    private void OnEnable()
+    {
+        if (globalSystem != null)
+        {
+            globalSystem.m_UpdateInheritanceEvent.AddListener(GetGlobalStatList);
+        }
+    }
+    private void OnDisable()
+    {
+        if (globalSystem != null)
+        {
+            globalSystem.m_UpdateInheritanceEvent.RemoveListener(GetGlobalStatList);
+        }   
+    }
     void GetGlobalStatList()
     {
-        if (PrimaryStats.Length != globalSystem.StatList.Length)
-        {
-            Stat[] newList = new Stat[globalSystem.StatList.Length];
-            int i = 0;
-            while (i < newList.Length && i < PrimaryStats.Length)
-            {
-                newList[i] = PrimaryStats[i];
-                i++;
-            }
-            PrimaryStats = newList;
-        }
+        PrimaryValues = new float[globalSystem.StatList.Length];
+        SecondaryValues = new float[globalSystem.StatList2.Length];
+        //int i = 0;
+        //while (i < newList.Length && i < PrimaryValues.Length)
+        //{
+        //    newList[i] = PrimaryStats[i];
+        //    i++;
+        //}
+        //PrimaryStats = newList;
+        //Stat[] newList = globalSystem.StatList;
+        //int i = 0;
+        //while (i < newList.Length && i < PrimaryStats.Length)
+        //{
+        //    newList[i] = PrimaryStats[i];
+        //    i++;
+        //}
+        //PrimaryStats = newList;
+        //newList = globalSystem.StatList2;
+        //i = 0;
+        //while (i < newList.Length && i < SecondaryStats.Length)
+        //{
+        //    newList[i] = SecondaryStats[i];
+        //    i++;
+        //}
+        //SecondaryStats = newList;
         //if (PrimaryStats.Length != statblock.PrimaryStats.Length)
         //{
         //    Stat[] newList = new Stat[statblock.PrimaryStats.Length];
@@ -48,36 +80,55 @@ public class Entity : MonoBehaviour
         //    SecondaryStats = newList;
         //}
     }
-    private void OnGUI()
+
+    private void OnValidate()
     {
-        if (globalSystem != null)
+        if (globalSystem != oldSystem)
         {
-            if (globalSystem != oldSystem)
-            {
-                // remove old listener
-                // Add new listener
-                oldSystem = globalSystem;
+            if (globalSystem != null)
+            {  
+                globalSystem.m_UpdateInheritanceEvent.AddListener(GetGlobalStatList);
+                GetGlobalStatList();
             }
-            // add listener
+            else
+            {
+                //PrimaryStats = null;
+            }
+            if (oldSystem != null)
+            {
+                oldSystem.m_UpdateInheritanceEvent.RemoveListener(GetGlobalStatList);
+            }
             oldSystem = globalSystem;
         }
     }
-    public Stat GetStat(string name)
+    //public int GetStatValue(string name)
+    //{
+    //    int i = 0;
+    //    foreach (Stat item in PrimaryStats)
+    //    {
+    //        if (name == item.name)
+    //        {
+    //            return item.CalcEffectiveValue(PrimaryValues[i]);
+    //        }
+    //        i++;
+    //    }
+    //    i = 0;
+    //    foreach (Stat item in SecondaryStats)
+    //    {
+    //        if (name == item.name)
+    //        {
+    //            return item.CalcEffectiveValue(SecondaryValues[i]);
+    //        }
+    //        i++;
+    //    }
+    //    return 0;
+    //}
+    public void SetStatValue(int mod)
     {
-        foreach (Stat item in PrimaryStats)
-        {
-            if (name == item.Name)
-            {
-                return item;
-            }
-        }
-        foreach (Stat item in SecondaryStats)
-        {
-            if (name == item.Name)
-            {
-                return item;
-            }
-        }
-        return null;
+
+    }
+    public void TakeDamage(int damage)
+    {
+
     }
 }
