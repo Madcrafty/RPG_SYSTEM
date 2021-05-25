@@ -7,15 +7,15 @@ using UnityEngine.Events;
 public class GlobalSystem : ScriptableObject
 {
     [SerializeField]
-    public Stat[] StatList;
+    public Stat[] StatList = new Stat[0];
     [SerializeField]
-    public Stat[] StatList2;
+    public Stat[] StatList2 = new Stat[0];
     [SerializeField]
-    Attack[] AttackList;
+    public Attack[] AttackList = new Attack[0];
     [SerializeField]
-    Status[] StatusList;
+    public Status[] StatusList = new Status[0];
     [SerializeField]
-    Type[] TypeList;
+    public Type[] TypeList = new Type[0];
     public UnityEvent m_UpdateInheritanceEvent = new UnityEvent();
 
     private void OnValidate()

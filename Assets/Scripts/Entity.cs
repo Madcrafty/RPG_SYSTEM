@@ -9,8 +9,10 @@ public class Entity : MonoBehaviour
     //public Stat[] PrimaryStats;
     //public Stat[] SecondaryStats;
 
-    public float[] PrimaryValues;
-    public float[] SecondaryValues;
+    public float[] PrimaryValues = new float[0];
+    public float[] SecondaryValues = new float[0];
+    public int[] Attacks = new int[0];
+    public int[] Types = new int[0];
     //Type[] Types;
     //Attack[] Attacks;
     //StatList statblock;
@@ -32,8 +34,31 @@ public class Entity : MonoBehaviour
     }
     void GetGlobalStatList()
     {
-        PrimaryValues = new float[globalSystem.StatList.Length];
-        SecondaryValues = new float[globalSystem.StatList2.Length];
+        float[] tmp = new float[globalSystem.StatList.Length];
+        float[] tmp2 = new float[globalSystem.StatList2.Length];
+        int[] tmp3 = new int[globalSystem.AttackList.Length];
+        int[] tmp4 = new int[globalSystem.TypeList.Length];
+
+        for (int i = 0; i < tmp.Length && i < PrimaryValues.Length; i++)
+        {
+            tmp[i] = PrimaryValues[i];
+        }
+        PrimaryValues = tmp;
+        for (int i = 0; i < tmp2.Length && i < SecondaryValues.Length; i++)
+        {
+            tmp2[i] = SecondaryValues[i];
+        }
+        SecondaryValues = tmp2;
+        for (int i = 0; i < tmp3.Length && i < Attacks.Length; i++)
+        {
+            tmp3[i] = Attacks[i];
+        }
+        Attacks = tmp3;
+        for (int i = 0; i < tmp4.Length && i < Types.Length; i++)
+        {
+            tmp4[i] = Types[i];
+        }
+        Types = tmp4;
         //int i = 0;
         //while (i < newList.Length && i < PrimaryValues.Length)
         //{
