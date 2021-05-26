@@ -10,7 +10,7 @@ public class Attack : ScriptableObject
     Type Type;
     Status[] Status;
     [Range(0,1)]
-    float StatusChances;
+    float HitStatusChance;
     
     float[] StatusWeights;
     int StatusLimit;
@@ -21,9 +21,19 @@ public class Attack : ScriptableObject
         foreach (Entity Target in Targets)
         {
             // Check if it hits
-            // Temp damage calcuation
-            Target.TakeDamage(Damage);
-            // Status chance
+            float HitChance = Accuracy - Target.GetStatValue("Evasion");
+            float rng = Random.Range(0, 101) / 100f;
+            if (rng < HitChance)
+            {
+                // Temp damage calcuation
+                Target.TakeDamage(Damage);
+                // Status chance
+                float rngStatus = Random.Range(0, 101) / 100f;
+                if (rngStatus < HitStatusChance)
+                {
+                    Target.ApplyStatus();
+                }
+            }
         }
     }
 }

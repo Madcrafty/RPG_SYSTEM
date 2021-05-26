@@ -9,6 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc0e9df007e6cf44f956d7d641a90894, type: 3}
-  m_Name: Slash
+  m_Script: {fileID: 11500000, guid: 153ce84f7e153b340a80906ee8d6989f, type: 3}
+  m_Name: GS2
   m_EditorClassIdentifier: 
+  StatList: []
+  StatList2: []
+  AttackList: []
+  StatusList: []
+  TypeList: []
+  m_UpdateInheritanceEvent:
+    m_PersistentCalls:
+      m_Calls: []

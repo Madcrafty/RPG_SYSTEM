@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26d5ee178e7b5294faedd1fa686eb580, type: 3}
-  m_Name: Stat 1
+  m_Name: SS1
   m_EditorClassIdentifier: 
-  Name: 
   Value: 0
-  Modifiers: []
+  Modifiers:
+  - {fileID: 11400000, guid: 681b20c62793fc24798bd6bab1ac800e, type: 2}

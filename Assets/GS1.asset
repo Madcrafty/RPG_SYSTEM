@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 153ce84f7e153b340a80906ee8d6989f, type: 3}
-  m_Name: GlobalSystem
+  m_Name: GS1
   m_EditorClassIdentifier: 
   StatList:
   - {fileID: 11400000, guid: b8da37cfff9154f4595b3fde549324dc, type: 2}

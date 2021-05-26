@@ -10,7 +10,6 @@ public class GlobalSystemEditor : Editor
     {
         base.OnInspectorGUI();
         GlobalSystem Gs = (GlobalSystem)target;
-        EditorGUILayout.TextField("Focus", GUI.GetNameOfFocusedControl());
 
         if (GUILayout.Button("ForceUpdate"))
         {

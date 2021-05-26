@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15eee1c46d6cf5d4caacbe8c034f7530, type: 3}
-  m_Name: no
+  m_Script: {fileID: 11500000, guid: 26d5ee178e7b5294faedd1fa686eb580, type: 3}
+  m_Name: PS1
   m_EditorClassIdentifier: 
-  EffectiveAgainst:
-  - {fileID: 11400000, guid: 28063886958677a41afa60b85bc8d57c, type: 2}
-  EffectiveMod: []
-  RisistantTo: []
-  RisistMod: []
+  Value: 0
+  Modifiers: []

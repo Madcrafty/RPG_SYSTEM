@@ -6,16 +6,17 @@ using UnityEngine.Events;
 public class Entity : MonoBehaviour
 {
     public GlobalSystem globalSystem;
-    //public Stat[] PrimaryStats;
-    //public Stat[] SecondaryStats;
 
+    // Universal Values:
+    public int health;
+    public int experience;
+    // Global Values:
     public float[] PrimaryValues = new float[0];
     public float[] SecondaryValues = new float[0];
     public int[] Attacks = new int[0];
     public int[] Types = new int[0];
-    //Type[] Types;
-    //Attack[] Attacks;
-    //StatList statblock;
+    // Current Active Effects
+    public Status[] ActiveStatuses = new Status[0];
     
     private GlobalSystem oldSystem;
     private void OnEnable()
@@ -59,51 +60,6 @@ public class Entity : MonoBehaviour
             tmp4[i] = Types[i];
         }
         Types = tmp4;
-        //int i = 0;
-        //while (i < newList.Length && i < PrimaryValues.Length)
-        //{
-        //    newList[i] = PrimaryStats[i];
-        //    i++;
-        //}
-        //PrimaryStats = newList;
-        //Stat[] newList = globalSystem.StatList;
-        //int i = 0;
-        //while (i < newList.Length && i < PrimaryStats.Length)
-        //{
-        //    newList[i] = PrimaryStats[i];
-        //    i++;
-        //}
-        //PrimaryStats = newList;
-        //newList = globalSystem.StatList2;
-        //i = 0;
-        //while (i < newList.Length && i < SecondaryStats.Length)
-        //{
-        //    newList[i] = SecondaryStats[i];
-        //    i++;
-        //}
-        //SecondaryStats = newList;
-        //if (PrimaryStats.Length != statblock.PrimaryStats.Length)
-        //{
-        //    Stat[] newList = new Stat[statblock.PrimaryStats.Length];
-        //    int i = 0;
-        //    while (i < newList.Length && i < PrimaryStats.Length)
-        //    {
-        //        newList[i] = PrimaryStats[i];
-        //        i++;
-        //    }
-        //    PrimaryStats = newList;
-        //}
-        //if (SecondaryStats.Length != statblock.SecondaryStats.Length)
-        //{
-        //    Stat[] newList = new Stat[statblock.SecondaryStats.Length];
-        //    int i = 0;
-        //    while (i < newList.Length && i < SecondaryStats.Length)
-        //    {
-        //        newList[i] = SecondaryStats[i];
-        //        i++;
-        //    }
-        //    SecondaryStats = newList;
-        //}
     }
 
     private void OnValidate()
@@ -126,33 +82,95 @@ public class Entity : MonoBehaviour
             oldSystem = globalSystem;
         }
     }
-    //public int GetStatValue(string name)
-    //{
-    //    int i = 0;
-    //    foreach (Stat item in PrimaryStats)
-    //    {
-    //        if (name == item.name)
-    //        {
-    //            return item.CalcEffectiveValue(PrimaryValues[i]);
-    //        }
-    //        i++;
-    //    }
-    //    i = 0;
-    //    foreach (Stat item in SecondaryStats)
-    //    {
-    //        if (name == item.name)
-    //        {
-    //            return item.CalcEffectiveValue(SecondaryValues[i]);
-    //        }
-    //        i++;
-    //    }
-    //    return 0;
-    //}
-    public void SetStatValue(int mod)
+    public int GetStatValue(int index)
+    {
+        if (index < globalSystem.StatList.Length && index >= 0)
+        {
+            return globalSystem.StatList[index].CalcEffectiveValue(PrimaryValues[index]);
+        }
+        else if (index > globalSystem.StatList.Length && index < globalSystem.StatList.Length + globalSystem.StatList2.Length)
+        {
+            index -= globalSystem.StatList.Length;
+            return globalSystem.StatList2[index].CalcEffectiveValue(SecondaryValues[index]);
+        }
+        Debug.LogError("Index: " + index + " is out of range");
+        return 0;
+    }
+    public int GetStatValue(string Name)
+    {
+        int i = 0;
+        foreach (Stat item in globalSystem.StatList)
+        {
+            if (Name == item.name)
+            {
+                return item.CalcEffectiveValue(PrimaryValues[i]);
+            }
+            i++;
+        }
+        i = 0;
+        foreach (Stat item in globalSystem.StatList)
+        {
+            if (Name == item.name)
+            {
+                return item.CalcEffectiveValue(SecondaryValues[i]);
+            }
+            i++;
+        }
+        Debug.LogError("Stat: " + Name + " could not be found");
+        return 0;
+    }
+    public void SetStatValue(int index, int mod)
+    {
+        if (index < globalSystem.StatList.Length && index >= 0)
+        {
+            PrimaryValues[index] = mod;
+            return;
+        }
+        else if (index > globalSystem.StatList.Length && index < globalSystem.StatList.Length + globalSystem.StatList2.Length)
+        {
+            index -= globalSystem.StatList.Length;
+            SecondaryValues[index] = mod;
+            return;
+        }
+        Debug.LogError("Index: " + index + " is out of range");
+    }
+    public void SetStatValue(string Name, int mod)
+    {
+        int i = 0;
+        foreach (Stat item in globalSystem.StatList)
+        {
+            if (Name == item.name)
+            {
+                PrimaryValues[i] = mod;
+                return;
+            }
+            i++;
+        }
+        i = 0;
+        foreach (Stat item in globalSystem.StatList)
+        {
+            if (Name == item.name)
+            {
+                SecondaryValues[i] = mod;
+                return;
+            }
+            i++;
+        }
+        Debug.LogError("Stat: " + Name + " could not be found");
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+    }
+    public virtual void Die()
     {
 
     }
-    public void TakeDamage(int damage)
+    public void AddStatus()
+    {
+
+    }
+    public void RemoveStatus()
     {
 
     }
